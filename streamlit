@@ -1,0 +1,32 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+from PIL import Image
+
+# Title and description.
+st.title("FAP MANGO")
+st.info("""Welcome to the Fashion Attribute Predictor (FAP)! An APP developed by a group of bimedical engineering students in 4th edition of Datathon. Upload an image of a clothing item
+         and this app will provide its attributes. You will know its color, fabric, category, and more.""")
+
+if st.button("Start"):
+# Let the user upload a file via `st.file_uploader`.
+uploaded_image = st.file_uploader("""Upload the image of the clothe you want to analyse. The format should 
+                                 be .png, .jpg or .jpeg""" , type=("png", "jpg", "jpeg" ))
+
+if st.button("Submit"):
+    if uploaded_image is not None:
+        image = Image.open(uploaded_image)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image(image, use_container_width=True)
+        with col2: 
+            st.markdown('<h2 style="text-align: center;">Cloth caracterstics</h2>', unsafe_allow_html=True)
+            st.write('<h3>Aqui deberian de aparecer todas las carcteristicas de la ropa en forma de lista</h3>')
+            st.write("- **Caracteristica 1:**")
+            st.write("- **Caracteristica 2:**")
+            st.write("- **Caracteristica 3:**")
+            st.write("- **Caracteristica 4:**")
+            st.write("- **Caracteristica 5:**")
+
+    else:
+        st.warning("There is not image uploaded. Please try again.")
